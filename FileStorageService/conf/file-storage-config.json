@@ -1,0 +1,11 @@
+{
+  "Port": 5001,
+  "S3Endpoint": "http://localhost:9000",
+  "S3AccessKey": "admin",
+  "S3SecretKey": "adminadmin",
+  "S3BucketName": "files",
+  "S3UseSSL": false,
+  "TemporalStoragePath": "./temp-storage",
+  "TemporalStorageExpirationMinutes": 60,
+  "PreSignedUrlExpirationHours": 24
+}

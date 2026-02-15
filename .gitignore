@@ -1,0 +1,30 @@
+# Build results
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+# IDE
+.idea/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# macOS
+.DS_Store
+
+# Logs
+diag/
+*.log
+
+# Temporary files
+temp-storage/
+*.tmp
+
+# Environment variables (если будешь добавлять)
+.env
+.env.local

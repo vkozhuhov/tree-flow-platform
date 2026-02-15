@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Design.App Framework -->
+        <PackageReference Include="MCDis256.Design.App" Version="*"/>
+        <PackageReference Include="MCDis256.Design.App.Conf" Version="*"/>
+        <PackageReference Include="MCDis256.Design.App.Logging" Version="*"/>
+        <PackageReference Include="MCDis256.Design.App.CrashReporter" Version="*"/>
+
+        <!-- Kafka -->
+        <PackageReference Include="Confluent.Kafka" Version="*"/>
+
+        <!-- PostgreSQL -->
+        <PackageReference Include="Npgsql" Version="*"/>
+        <PackageReference Include="Dapper" Version="*"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Копирование конфигурационных файлов -->
+        <None Include="conf\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

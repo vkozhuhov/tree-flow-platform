@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+option csharp_namespace = "FileStorageService.Protos";
+
+package filestorage;
+
+// Сервис для управления файлами
+service FileStorage {
+  // Проверка работоспособности сервиса
+  rpc HealthCheck (HealthCheckRequest) returns (HealthCheckResponse);
+
+  // Записать файлы во временное хранилище
+  rpc WriteToTemporalStorage (TemporalStorageRequest) returns (TemporalStorageResponse);
+
+  // Переместить файлы из временного хранилища в постоянное (S3) и получить PreSignedUrl
+  rpc MoveToPermanentStorage (PermanentStorageRequest) returns (PermanentStorageResponse);
+
+  // Восстановить PreSignedUrl для файла по S3 ключу
+  rpc GetPreSignedUrl (GetPreSignedUrlRequest) returns (GetPreSignedUrlResponse);
+}
+
+// Запрос на запись во временное хранилище
+message TemporalStorageRequest {
+  string application_id = 1;
+  repeated FileData files = 2;
+}
+
+// Данные файла
+message FileData {
+  string filename = 1;
+  bytes content = 2;
+  string content_type = 3;
+}
+
+// Ответ на запись во временное хранилище
+message TemporalStorageResponse {
+  bool success = 1;
+  string message = 2;
+  repeated string temporal_file_ids = 3; // ID файлов во временном хранилище
+}
+
+// Запрос на перенос в постоянное хранилище
+message PermanentStorageRequest {
+  string application_id = 1;
+  repeated string temporal_file_ids = 2; // ID файлов из временного хранилища
+}
+
+// Ответ на перенос в постоянное хранилище
+message PermanentStorageResponse {
+  bool success = 1;
+  string message = 2;
+  repeated FileMetadata files = 3;
+}
+
+// Метаданные файла в постоянном хранилище
+message FileMetadata {
+  string file_id = 1;
+  string filename = 2;
+  string s3_key = 3;
+  string presigned_url = 4;
+  int64 size = 5;
+  string content_type = 6;
+}
+
+// Запрос для проверки работоспособности
+message HealthCheckRequest {
+}
+
+// Ответ на проверку работоспособности
+message HealthCheckResponse {
+  bool healthy = 1;
+  string message = 2;
+  string version = 3;
+}
+
+// Запрос на восстановление PreSignedUrl
+message GetPreSignedUrlRequest {
+  string s3_key = 1;
+}
+
+// Ответ с восстановленной PreSignedUrl
+message GetPreSignedUrlResponse {
+  bool success = 1;
+  string presigned_url = 2;
+  string message = 3;
+}

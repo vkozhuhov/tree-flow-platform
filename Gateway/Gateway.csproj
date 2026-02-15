@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Доступ к internal классам для тестов -->
+        <InternalsVisibleTo Include="Gateway.Tests"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- gRPC Proto files (Client) -->
+        <Protobuf Include="Protos\*.proto" GrpcServices="Client"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Design.App Framework -->
+        <PackageReference Include="MCDis256.Design.App" Version="*"/>
+        <PackageReference Include="MCDis256.Design.App.Web" Version="*"/>
+        <PackageReference Include="MCDis256.Design.App.Conf" Version="*"/>
+        <PackageReference Include="MCDis256.Design.App.Logging" Version="*"/>
+        <PackageReference Include="MCDis256.Design.App.CrashReporter" Version="*"/>
+
+        <!-- Swagger/OpenAPI -->
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="*"/>
+
+        <!-- Kafka -->
+        <PackageReference Include="Confluent.Kafka" Version="*"/>
+
+        <!-- gRPC Client -->
+        <PackageReference Include="Grpc.Net.Client" Version="*"/>
+        <PackageReference Include="Google.Protobuf" Version="*"/>
+        <PackageReference Include="Grpc.Tools" Version="*">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Копирование конфигурационных файлов -->
+        <None Include="conf\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

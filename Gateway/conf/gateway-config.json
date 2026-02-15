@@ -1,0 +1,9 @@
+{
+  "KafkaBroker": "localhost:9092",
+  "KafkaApplicationTopic": "applications",
+  "GrpcFileStorageUrl": "http://localhost:5001",
+  "Port": 5050,
+  "ProcessingTimeoutSeconds": 30,
+  "MinProcessingDelayMs": 1000,
+  "MaxProcessingDelayMs": 2000
+}

@@ -1,0 +1,9 @@
+{
+  "KafkaBroker": "localhost:9092",
+  "KafkaApplicationTopic": "applications",
+  "KafkaResultTopic": "application-results",
+  "KafkaGroupId": "application-processor-group",
+  "PostgresConnectionString": "Host=localhost;Port=5433;Database=threeflow;Username=postgres;Password=12341234",
+  "MaxParallelTasks": 10,
+  "StatisticsSaveIntervalSeconds": 60
+}
